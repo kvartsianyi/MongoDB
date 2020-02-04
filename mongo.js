@@ -54,12 +54,61 @@
 //     }
 // ]).pretty()
 
-
-
 // 10) Знайти середній бал дітей які вивчають математику або фізику
+// db.students.aggregate([
+//     {
+//         $match: {
+//             $or: [
+//                 {lessons: 'mathematics'},
+//                 {lessons: 'physics'}
+//             ]
+//         }
+//     },
+//     {
+//         $group: {
+//             "_id": null,
+//             "avg": {$avg: "$avgScore"}
+//         }
+//     }
+// ]).pretty()
+
 // 11) Знайти середній бал по 2 класі
+// db.students.aggregate([
+//     {
+//         $match: {
+//             class: 2
+//         }
+//     },
+//     {
+//         $group: {
+//             "_id": null,
+//             "avg": {$avg: "$avgScore"}
+//         }
+//     }
+// ]).pretty()
+
 // 12) Знайти дітей з не повною сімєю
+// db.students.find({
+//     parents: {$size: 1}
+// }).pretty()
+
 // 13) Знайти батьків які не працюють
+
+//???? видає 2 батьків, навіть якщо 1 працює
+// db.students.find(
+//     {
+//         $and: [
+//             {parents: {$exists: true}},
+//             {"parents.profession": null}
+//         ]
+//     },
+//     {
+//         "parents.name": true,
+//         "gender": true,
+//         "_id": true
+//     }
+// ).pretty()
+
 // 14) Не працюючих батьків влаштувати офіціантами
 // 15) Вигнати дітей, які мають середній бал менше ніж 2.5
 // 16) Дітям, батьки яких працюють в освіті ( teacher ) поставити 5

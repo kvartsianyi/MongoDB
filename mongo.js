@@ -115,7 +115,32 @@
 // ).pretty()
 
 // 14) Не працюючих батьків влаштувати офіціантами
-// ?????????????
+// db.students.update(
+//     {
+//         $and: [
+//             {
+//                 parents: {$exists: true}
+//             },
+//             {
+//                 "parents.profession": null
+//             }
+//         ]
+//     },
+//     {
+//         $set:{
+//             "parents.$.profession": "waiter"
+//         }
+//     },
+//     {
+//         multi: true
+//     }
+// )
+//
+// db.students.find(
+//     {
+//         "parents.profession": "waiter"
+//     }
+// ).pretty()
 
 
 // 15) Вигнати дітей, які мають середній бал менше ніж 2.5
